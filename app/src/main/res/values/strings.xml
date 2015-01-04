@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2014 The Android Open Source Project
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<resources>
+
+    <string-array name="planets_array">
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+    </string-array>
+
+    <string name="app_name">Work Time Timer</string>
+    <string name="title_activity_main">Main Activity</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="action_websearch">Web search</string>
+    <string name="app_not_available">Sorry, there\'s no web browser available</string>
+    <string name="title_activity_navigation_drawer">NavigationDrawerActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_blank_fragment">Hello blank fragment 2222</string>
+    <string name="hello_blank_fragment1">Hello blank fragment 1111</string>
+    <string name="listWifiDialogTitle">Wi-Fi list</string>
+
+    <string-array name="fragments_array">
+        <item>Timer</item>
+        <item>Work history</item>
+        <item>Settings</item>
+    </string-array>
+
+    <string name="triggeringWifiTitle">Wi-Fi, that launch timer</string>
+    <string name="workTimeTitle">Work time</string>
+    <string name="dialogSetLabel">Set</string>
+    <string name="dialogCancelLabel">Cancel</string>
+    <string name="labelToFinishWork">You have to work:</string>
+    <string name="labelFromStartWork">You have been working for:</string>
+    <string name="btnExtendWorkLabel">Extend</string>
+    <string name="btnFinishWorkLabel">Finish</string>
+    <string name="btnCancelWorkLabel">Cancel</string>
+    <string name="title_activity_alarm">AlarmActivity</string>
+
+</resources>

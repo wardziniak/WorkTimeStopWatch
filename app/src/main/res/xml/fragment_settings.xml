@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.wardziniak.worktimestopwatch.ui.settings.WifiListPreference
+        android:key="wifi_list_key"
+        android:title="@string/triggeringWifiTitle"
+        android:dialogTitle="@string/listWifiDialogTitle"/>
+    <com.wardziniak.worktimestopwatch.ui.settings.TimePreference
+        android:key="work_time_key"
+        android:title="@string/workTimeTitle"/>
+</PreferenceScreen>
