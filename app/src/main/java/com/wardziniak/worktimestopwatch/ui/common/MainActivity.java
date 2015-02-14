@@ -3,6 +3,7 @@ package com.wardziniak.worktimestopwatch.ui.common;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
@@ -16,6 +17,7 @@ import com.wardziniak.worktimestopwatch.R;
 import com.wardziniak.worktimestopwatch.ui.history.WorkHistoryFragment;
 import com.wardziniak.worktimestopwatch.ui.main.TimerViewFragment;
 import com.wardziniak.worktimestopwatch.ui.settings.TimerSettingsFragment;
+import com.wardziniak.worktimestopwatch.workers.WorkTimeService;
 
 import java.util.Arrays;
 import java.util.List;
@@ -65,7 +67,12 @@ public class MainActivity extends FragmentActivity implements MainView {
                 mainPresenter.onDrawerClick(position);
             }
         });
+
+        mainPresenter.switchToFragment(getIntent().getIntExtra(WorkTimeService.PARAM_FRAGMENT_INDEX, mainPresenter.getIndexOfDefaultFragment()));
+
     }
+
+
 
     @Override
     public void switchToTimerView(int selectedItem) {

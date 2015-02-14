@@ -7,10 +7,16 @@ public interface TimerViewPresenter {
 
     public void onStartView();
 
-    public void extendWork();
+    public void extendWork(int hours, int minutes);
+
+    public void prepareToExtend();
 
     public void finishWork();
 
     public void cancelWork();
+
+    public void workTimeChange();
+
+    public void onWorkTimeEnd();
 
 }

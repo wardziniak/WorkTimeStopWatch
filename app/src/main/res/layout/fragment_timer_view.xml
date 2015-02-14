@@ -36,16 +36,19 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:text="@string/btnExtendWorkLabel"
+            android:drawableLeft="@drawable/construction_worker"
             android:id="@+id/btnExtendWork"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:text="@string/btnFinishWorkLabel"
+            android:drawableLeft="@drawable/coctail"
             android:id="@+id/btnFinishWork"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:text="@string/btnCancelWorkLabel"
+            android:drawableLeft="@drawable/close_window"
             android:id="@+id/btnCancelWork"/>
     </LinearLayout>
 </LinearLayout>

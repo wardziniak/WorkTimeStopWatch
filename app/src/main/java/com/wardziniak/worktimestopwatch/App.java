@@ -28,4 +28,8 @@ public class App extends Application {
     private List<Object> getModules() {
         return Arrays.<Object>asList(new AppModule(this));
     }
+
+    public ObjectGraph getObjectGraph() {
+        return objectGraph;
+    }
 }

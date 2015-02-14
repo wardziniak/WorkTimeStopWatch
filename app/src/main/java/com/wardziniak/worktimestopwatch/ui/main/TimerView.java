@@ -18,4 +18,7 @@ public interface TimerView {
     public void startTimer();
 
     public void stopTimer();
+
+    public void showTimePicker(int minHours, int minMinutes);
+
 }

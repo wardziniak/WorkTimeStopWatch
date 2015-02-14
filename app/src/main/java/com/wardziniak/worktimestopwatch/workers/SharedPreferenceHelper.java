@@ -53,4 +53,14 @@ public class SharedPreferenceHelper {
         return sharedPreferences.getLong(WORK_START_TIME_KEY, ALARM_WAS_NOT_SET);
     }
 
+    public static boolean isWorking(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return sharedPreferences.getBoolean(IS_WORKING_KEY, false);
+    }
+
+    public static void setWorking(Context context, boolean isWorking) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        sharedPreferences.edit().putBoolean(IS_WORKING_KEY, isWorking).commit();
+    }
+
 }

@@ -21,7 +21,7 @@
         </activity>
 
         <receiver
-            android:name="com.wardziniak.worktimestopwatch.workers.ConectedWiFiReceiver"
+            android:name=".workers.WorkStateChangeReceiver"
             android:enabled="true"
             android:exported="true" >
             <intent-filter>
@@ -47,6 +47,10 @@
 
         <service
             android:name="com.wardziniak.worktimestopwatch.workers.WorkTimeService"
+            android:exported="false" >
+        </service>
+        <service
+            android:name="com.wardziniak.worktimestopwatch.workers.MyIntentService"
             android:exported="false" >
         </service>
     </application>

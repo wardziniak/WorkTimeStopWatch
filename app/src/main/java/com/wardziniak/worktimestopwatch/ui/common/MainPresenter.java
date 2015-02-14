@@ -11,5 +11,9 @@ public interface MainPresenter {
 
     public String[] getDrawerTitles();
 
+    public void switchToFragment(int fragmentIndex);
+
+    public int getIndexOfDefaultFragment();
+
     public TimerViewPresenter getTimerViewPresenter();
 }

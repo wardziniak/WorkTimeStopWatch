@@ -23,8 +23,8 @@ public class WorkHasFinishedReceiver extends BroadcastReceiver {
 
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.notification);
 
-        remoteViews.setTextViewText(R.id.textView1, "To jest alarm");
-        remoteViews.setTextViewText(R.id.textView2, "koniec pracy");
+        //remoteViews.setTextViewText(R.id.textView1, "To jest alarm");
+        //remoteViews.setTextViewText(R.id.textView1, "koniec pracy");
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
                 .setSmallIcon(R.drawable.icon_notification_medal)

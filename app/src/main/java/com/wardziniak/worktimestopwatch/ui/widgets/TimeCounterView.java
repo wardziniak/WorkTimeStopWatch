@@ -137,12 +137,13 @@ public class TimeCounterView extends TextView {
     private long getCurrentTime() {
         long elapsedTime = SystemClock.elapsedRealtime() - startTime;
         if (isUp) {
-            long newTime = min+elapsedTime;
+            return min+elapsedTime;
+/*            long newTime = min+elapsedTime;
             if (newTime > max) {
                 newTime = max;
                 stop();
             }
-                return newTime;
+                return newTime;*/
         }
         else {
             long newTime = max-elapsedTime;

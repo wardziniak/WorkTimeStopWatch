@@ -52,4 +52,12 @@
     <string name="btnCancelWorkLabel">Cancel</string>
     <string name="title_activity_alarm">AlarmActivity</string>
 
+    <!-- Notification strings -->
+    <string name="notificationStartActivity">StartActivity</string>
+    <string name="notificationStartService">StartService</string>
+    <string name="chronometrText">You have been working for </string>
+    <string name="extendLabel">extend</string>
+    <string name="finishLabel">finish</string>
+    <string name="cancelLabel">cancel</string>
+
 </resources>

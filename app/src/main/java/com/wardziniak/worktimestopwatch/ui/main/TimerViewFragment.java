@@ -1,25 +1,33 @@
 package com.wardziniak.worktimestopwatch.ui.main;
 
 
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TimePicker;
 
+import com.squareup.otto.Bus;
+import com.squareup.otto.Subscribe;
 import com.wardziniak.worktimestopwatch.App;
 import com.wardziniak.worktimestopwatch.R;
-import com.wardziniak.worktimestopwatch.ui.common.MainModule;
 import com.wardziniak.worktimestopwatch.ui.widgets.TimeCounterView;
+import com.wardziniak.worktimestopwatch.workers.model.OnWorkStartSignal;
+import com.wardziniak.worktimestopwatch.workers.model.WorkHasFinished;
+import com.wardziniak.worktimestopwatch.workers.model.WorkTimeHasChangeSignal;
+import com.wardziniak.worktimestopwatch.workers.model.WorkWasCanceled;
 
 import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
 
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import dagger.ObjectGraph;
 
 /**
@@ -34,6 +42,9 @@ public class TimerViewFragment extends Fragment implements TimerView {
 
     @Inject
     TimerViewPresenter timerViewPresenter;
+
+    @Inject
+    Bus eventBus;
 
     private ObjectGraph activityGraph;
 
@@ -54,6 +65,7 @@ public class TimerViewFragment extends Fragment implements TimerView {
         View view = inflater.inflate(R.layout.fragment_timer_view, container, false);
         timeCounterViewToFinish = (TimeCounterView) view.findViewById(R.id.timeCounterToFinish);
         timeCounterViewFromStart = (TimeCounterView) view.findViewById(R.id.timeCounterFromStart);
+        ButterKnife.inject(this, view);
         return view;
     }
 
@@ -73,6 +85,7 @@ public class TimerViewFragment extends Fragment implements TimerView {
         super.onCreate(savedInstanceState);
         activityGraph = ((App) getActivity().getApplication()).createScopedGraph(getModules().toArray());
         activityGraph.inject(this);
+        eventBus.register(this);
     }
 
     private List<Object> getModules() {
@@ -82,7 +95,27 @@ public class TimerViewFragment extends Fragment implements TimerView {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        eventBus.unregister(this);
         activityGraph = null;
+    }
+
+    @Override
+    public void showTimePicker(final int minHours, final int minMinutes) {
+        TimePickerDialog timePicker = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                timerViewPresenter.extendWork(hourOfDay, minute);
+            }
+        }, minHours, minMinutes, true) {
+            @Override
+            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+                if (hourOfDay < minHours)
+                    view.setCurrentHour(minHours);
+                if (minute < minMinutes)
+                    view.setCurrentMinute(minMinutes);
+            }
+        };
+        timePicker.show();
     }
 
     @Override
@@ -113,6 +146,40 @@ public class TimerViewFragment extends Fragment implements TimerView {
     public void stopTimer() {
         timeCounterViewFromStart.stop();
         timeCounterViewToFinish.stop();
+    }
+
+    @Subscribe
+    public void onWorkTimeChange(WorkTimeHasChangeSignal workTimeHasChangeSignal) {
+        Log.d("TimerViewFragment:" , "onWorkStart");
+        timerViewPresenter.workTimeChange();
+    }
+
+    @Subscribe
+    public void onWorkHasBeenFinished(WorkHasFinished workHasFinished) {
+        timerViewPresenter.onWorkTimeEnd();
+    }
+
+    @Subscribe
+    public void onWorkWasCanceled(WorkWasCanceled workWasCanceled) {
+        timerViewPresenter.onWorkTimeEnd();
+    }
+
+    @OnClick(R.id.btnCancelWork)
+    public void cancelWork(View view) {
+        Log.d("TimerViewFragment", "cancelWork");
+        timerViewPresenter.cancelWork();
+    }
+
+    @OnClick(R.id.btnExtendWork)
+    public void extendWork(View view) {
+        Log.d("TimerViewFragment", "extendWork");
+        timerViewPresenter.prepareToExtend();
+    }
+
+    @OnClick(R.id.btnFinishWork)
+    public void finishWork(View view) {
+        Log.d("TimerViewFragment", "finishWork");
+        timerViewPresenter.finishWork();
     }
 
     /*    @Override

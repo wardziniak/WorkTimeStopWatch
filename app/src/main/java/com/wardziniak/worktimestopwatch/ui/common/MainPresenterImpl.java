@@ -12,9 +12,9 @@ import com.wardziniak.worktimestopwatch.ui.main.TimerViewPresenterImpl;
  */
 public class MainPresenterImpl implements MainPresenter {
 
-    private final static int TIMER_VIEW_POSITION = 0;
-    private final static int HISTORY_VIEW_POSITION = 1;
-    private final static int SETTINGS_VIEW_POSITION = 2;
+    public final static int TIMER_VIEW_POSITION = 0;
+    public final static int HISTORY_VIEW_POSITION = 1;
+    public final static int SETTINGS_VIEW_POSITION = 2;
 
     private MainView mainView;
 
@@ -22,6 +22,18 @@ public class MainPresenterImpl implements MainPresenter {
 
     public MainPresenterImpl(MainView mainView) {
         this.mainView = mainView;
+    }
+
+
+    @Override
+    public void switchToFragment(int fragmentIndex) {
+        this.selectedItem = fragmentIndex;
+        mainView.switchToTimerView(selectedItem);
+    }
+
+    @Override
+    public int getIndexOfDefaultFragment() {
+        return selectedItem;
     }
 
     @Override
