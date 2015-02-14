@@ -82,6 +82,6 @@ public class WorkStateChangeReceiver extends BroadcastReceiver {
         SharedPreferenceHelper.setWorkFinishTime(context, triggerTime);
         SharedPreferenceHelper.setWorkStartTime(context, workStartTime);
         context.startService(new Intent(context, WorkTimeService.class));
-        Log.d("ConnectedToWifiReceiverJakasZmiana", "ustawiono alarm");
+        Log.d("ConnectedToWifiReceiverJakasZmiana Jeszcze jedna zmiana", "ustawiono alarm,");
     }
 }
